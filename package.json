@@ -7,9 +7,36 @@
     "build": "babel src -d dist --extensions '.ts'",
     "check-types": "tsc",
     "lint": "prettier --write ./src/**/*.ts && tsc --noEmit && eslint --ext .ts --quiet --fix ./src/**/*.ts",
+    "semantic-release": "semantic-release",
     "serve": "node dist/index.js",
     "start": "nodemon --exec babel-node src/index.ts --extensions '.ts'",
     "test": "echo \"Error: no test specified\" && exit 0"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      [
+        "@semantic-release/npm",
+        {
+          "npmPublish": false
+        }
+      ],
+      "@semantic-release/github"
+    ],
+    "prepare": [
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      {
+        "path": "@semantic-release/git",
+        "assets": [
+          "package.json",
+          "package-lock.json",
+          "CHANGELOG.md"
+        ],
+        "message": "chore(release): ${nextRelease.version} [skip ci]nn${nextRelease.notes}"
+      }
+    ]
   },
   "keywords": [],
   "author": "Michael Moffet",
@@ -22,6 +49,10 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-typescript": "^7.3.3",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.0.16",
     "@types/node": "^12.7.3",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
     "@typescript-eslint/parser": "^2.0.0",
@@ -33,6 +64,7 @@
     "lint-staged": "^9.2.5",
     "nodemon": "^1.19.1",
     "prettier": "^1.18.2",
+    "semantic-release": "^15.13.24",
     "typescript": "^3.6.2"
   },
   "dependencies": {
@@ -42,7 +74,8 @@
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged",
-      "post-commit": "git update-index --again"
+      "post-commit": "git update-index --again",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   }
 }
