@@ -4,6 +4,8 @@
   "description": "A Node.js boilerplate project",
   "main": "index.js",
   "scripts": {
+    "build": "babel src -d dist",
+    "serve": "node dist/index.js",
     "start": "nodemon --exec babel-node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,12 +13,14 @@
   "author": "Michael Moffet",
   "license": "ISC",
   "devDependencies": {
+    "@babel/cli": "^7.5.5",
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "dotenv": "^8.1.0"
   }
 }
