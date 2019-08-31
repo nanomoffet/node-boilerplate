@@ -1,0 +1,16 @@
+{
+  "name": "node-boilerplate",
+  "version": "1.0.0",
+  "description": "A Node.js boilerplate project",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Michael Moffet",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
