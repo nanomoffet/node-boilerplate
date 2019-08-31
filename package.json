@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src -d dist --extensions '.ts'",
     "check-types": "tsc",
-    "lint": "prettier --write && tsc --noEmit && eslint '*/**/*.{ts}' --quiet --fix",
+    "lint": "prettier --write '**/*.ts' && tsc --noEmit && eslint '*/**/*.{ts}' --quiet --fix",
     "serve": "node dist/index.js",
     "start": "nodemon --exec babel-node src/index.ts --extensions '.ts'",
     "test": "echo \"Error: no test specified\" && exit 0"

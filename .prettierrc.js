@@ -6,6 +6,4 @@ module.exports = {
     tabWidth: 4,
     arrowParens: "always",
     endOfLine: "lf",
-
-
 };
